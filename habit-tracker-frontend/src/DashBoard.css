@@ -1,0 +1,105 @@
+.dashboard {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* 🎨 Cinematic gradient */
+    background: #3e6363;
+    background: linear-gradient(220deg,rgba(62, 99, 99, 1) 0%, rgba(168, 179, 152, 1) 51%, rgba(204, 227, 177, 1) 100%);
+}
+
+.dashboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+
+  opacity: 0.50;
+  pointer-events: none;
+}
+
+.dashboard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("data:image/svg+xml,...baseFrequency='4'...");
+  opacity: 0.05;
+
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08), transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.06), transparent 50%);
+
+  filter: blur(40px);
+
+  pointer-events: none;
+}
+
+/* main layout container */
+.hero {
+  position: relative;
+  height: 100%;
+  padding: 60px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: white;
+}
+
+/* top row */
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 16px;
+  letter-spacing: 4px;
+  opacity: 0.6;
+}
+
+/* center content */
+.hero-center {
+  max-width: 500px;
+}
+
+/* main heading */
+.hero-center h1 {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  line-height: 1.2;
+}
+
+.hero-center h1 span {
+  margin-left: 10px;
+}
+
+
+/* paragraph */
+.hero-center p {
+  margin-top: 16px;
+
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+
+  max-width: 400px;
+}
+
+/* bottom text */
+.hero-bottom {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+.hero-center h1 {
+  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+

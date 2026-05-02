@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap');
+
+:root {
+  --cream: #E8D4B0;
+  --orange: #C4602A;
+  --rust: #8B2010;
+  --sage: #7A9E8C;
+  --espresso: #2C1A0E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-bg {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 10%, rgba(196, 96, 42, 0.8) 54%, transparent 80%),
+    radial-gradient(ellipse at 80% 10%, rgba(122, 158, 140, 0.65) 0%, transparent 95%),
+    radial-gradient(ellipse at 90% 80%, rgba(139, 32, 16, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(122, 158, 140, 0.5) 0%, transparent 50%),
+    #E8D4B0;
+  background-attachment: fixed;
+  position: relative;
+  margin: 8px;
+  border-radius: 16px;
+  min-height: calc(100vh - 16px);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+body {
+  background: white;
+}
+
+.auth-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.auth-title {
+  text-align: center;
+  letter-spacing: 6px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--cream);
+  text-transform: uppercase;
+  text-align: center;
+  background: #2C1A0E;
+  border-radius: 50px;
+  padding: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+}
+
+.auth-branding {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 60px;
+  height: 420px;
+  background: whitesmoke;
+  border-radius: 24px;
+  padding: 48px;
+  justify-content: center;
+  gap: 12px;
+}
+
+.auth-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-card-wrapper {
+  width: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.register-card {
+  padding: 32px 36px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  padding: 32px 36px;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 420px;
+  width: 380px;
+}
+
+.input-glass {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--espresso);
+  flex: 1;
+  width: 100%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  padding: 10px 16px;
+  gap: 10px;
+  width: 100%;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.25s ease;
+}
+
+.input-wrapper:focus-within {
+  border: 1px solid rgba(122, 158, 140, 0.6); /* sage glow */
+  
+  box-shadow: 
+    0 0 0 2px rgba(223, 255, 239, 0.2),
+    0 6px 24px rgba(0, 0, 0, 0.35);
+  
+  background: rgba(133, 133, 133, 0.35);
+}
+
+.input-icon {
+  color: var(--espresso);
+  font-size: 14px;
+  opacity: 0.6;
+  width: 28px;
+  height: 28px;
+  background: rgb(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--espresso);
+  flex-shrink: 0;
+}
+
+.btn-primary {
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #2C1A0E,
+    #4a2c1a
+  );
+  box-shadow: 
+    0 4px 20px rgba(0,0,0,0.3),
+    inset 0 1px 1px rgba(255,255,255,0.1);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 24px rgba(0,0,0,0.4);
+}
+
+
+.auth-btn {
+  margin-top: 10px;
+}
+
+.auth-switch {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--espresso);
+  gap: 6px;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.btn-forgot {
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--espresso);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.error-text {
+  color: red;
+
+}
+
+.logout-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 32px;
+  background: rgba(0, 0, 0, 0.50);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 16px;
+  cursor: pointer;
+  color: var(--espresso);
+  z-index: 100;
+  transition: background 0.2s;
+  color: white;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.box-shadow {
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.main-layout {
+  background: rgba(223, 223, 223, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 32px;
+  gap: 36px;
+  margin-bottom: 80px;
+  border-radius: 16px;
+}
+
+.habit-card {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  margin: 20px;
+  align-items: center;
+  min-height: 180px;
+  flex-wrap: wrap;
+}
+
+.habit-actions {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.habit-header {
+  margin-bottom: 6px;
+}
+
+.habits-column h3{
+  text-align: center;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.btn-icon {
+  background: rgba(201, 201, 201, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: none;
+  border-radius: 50px;
+  margin: 4px;
+  width: 60px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.25s ease;
+}
+
+.btn-icon:hover {
+  background: var(--espresso);
+  color: whitesmoke;
+}
+
+.danger {
+  background-color: #ff2200;
+  color: white;
+}
+
+.success {
+  background-color: green;
+  color: white;
+}
+
+.add-habit-card {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 24px;
+  display: flex; flex-direction: column;
+  gap: 8px;
+}
+
+#create-habit-save-btn {
+  padding: 4px;
+  width: 84px;
+  margin-left: 90%;
+}
+
+#create-habit-save-btn:hover {
+  background: #2C1A0E;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    margin-left: 240px;
+}
+
+.habit-card-editing {
+  flex-direction: row;
+  align-items: center;
+}
+
+.edit-form .input-wrapper {
+  flex: 1;
+  margin: 0;
+}
+
+.edit-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 50px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.25s ease;
+
+}
+
+.edit-input-glass {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+}
+
+.edit-input-glass::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.edit-input-wrapper:focus-within {
+  border: 1px solid rgba(122, 158, 140, 0.6); /* sage glow */
+  
+  box-shadow: 
+    0 0 0 2px rgba(122, 158, 140, 0.2),
+    0 6px 24px rgba(0, 0, 0, 0.35);
+  
+  background: rgba(0, 0, 0, 0.35);
+}
+
+#profile-page h1 {
+  text-align: center;
+  background: rgba(117, 117, 117, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 6px;
+  border-radius: 50px;
+}
+
+.habit-name {
+  font-size: xx-large;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+}
