@@ -4,6 +4,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const { Pool } = require('pg');
+const pgSession = require('connect-pg-simple')(session);
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
