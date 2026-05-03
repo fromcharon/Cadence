@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState,} from 'react';
 
 
 function CreateHabitForm(props) {
@@ -7,7 +7,7 @@ function CreateHabitForm(props) {
 
     async function addHabit(){
     try {    
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/habits`, {
+        await fetch(`${process.env.REACT_APP_API_URL}/habits`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

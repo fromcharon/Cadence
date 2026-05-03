@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState,} from 'react';
 
 function EditHabitForm(props){
     const [newName, setNewName] = useState(props.habit.name);
@@ -6,7 +6,7 @@ function EditHabitForm(props){
 
     async function handleEdit() {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/habits/${props.habit.id}`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/habits/${props.habit.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

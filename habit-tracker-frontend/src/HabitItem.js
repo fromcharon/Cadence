@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState,} from 'react';
 import EditHabitForm from './EditHabitForm';
 import { Trash2, CheckCircle, Pencil } from 'lucide-react'
 
@@ -9,7 +9,7 @@ function HabitItem(props){
     async function handleDelete() {
         try {
             if (confirmDelete) {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/habits/${props.habit.id}`, {
+                await fetch(`${process.env.REACT_APP_API_URL}/habits/${props.habit.id}`, {
                     method: 'DELETE',
                     credentials: 'include'
                 })
@@ -26,7 +26,7 @@ function HabitItem(props){
 
     async function handleMarkComplete() {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/habits/${props.habit.id}/complete`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/habits/${props.habit.id}/complete`, {
                 method: 'POST',
                 credentials: 'include'
             })

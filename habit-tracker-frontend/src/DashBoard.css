@@ -11,7 +11,7 @@
     background: linear-gradient(220deg,rgba(62, 99, 99, 1) 0%, rgba(168, 179, 152, 1) 51%, rgba(204, 227, 177, 1) 100%);
 }
 
-.dashboard::before {
+/* .dashboard::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -37,7 +37,7 @@
   filter: blur(40px);
 
   pointer-events: none;
-}
+} */
 
 /* main layout container */
 .hero {

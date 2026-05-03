@@ -18,25 +18,8 @@ function HabitList(props) {
 
     useEffect(() => {
     loadHabits();
+    
 }, []);
-
-    async function handleLogout() {
-        try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
-            });
-
-        //sets the SetLoginState to false, changes to auth view.
-        props.onLogout(false);
-    }   
-    catch (err) {
-        console.error("Unable to Log-out")
-    } 
-    }
     
     return (
         <div className="app-container">
