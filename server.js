@@ -35,11 +35,14 @@ const PORT = 3000;
 app.use(express.json());
 app.use(allowControl);
 app.use(session({
-    secret: 'habit-tracker-secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
-}));
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true,
+    sameSite: 'none'
+  }
+}))
 
 
 
