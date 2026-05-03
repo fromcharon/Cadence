@@ -243,8 +243,21 @@ app.post("/register", async (req, res) => {
                 [email, userName, hashPassword]
             );
 
-            res.status(201).json({message: "Registration Successful!"});
+            const newUser = await pool.query(
+            "SELECT * FROM users WHERE email = $1",
+            [email]
+);  
+
+            req.session.regenerate((err) => {
+                if (err) return res.status(500).json({ error: 'Session error' });
+                req.session.userId = newUser.rows[0].id;
+                req.session.save((err) => {
+                    if (err) return res.status(500).json({ error: 'Session save failed' });
+                    res.status(201).json({ message: 'Registration Successful!' });
+                });
+            });
         }
+        
         else res.status(400).json({ error: "Already Registered!" });
     }
         
@@ -271,13 +284,14 @@ app.post("/login", async (req, res) => {
             const match = await bcrypt.compare(password, userData.password);
 
             if (match) {
+                req.session.regenerate((err) => {
+                if (err) return res.status(500).json({ error: 'Session error' });
                 req.session.userId = userData.id;
                 req.session.save((err) => {
-                    if (err) {
-                        return res.status(500).json({ error: 'Session save failed' });
-                    }
+                    if (err) return res.status(500).json({ error: 'Session save failed' });
                     res.json({ message: 'Login successful' });
-                    });
+                });
+});
             }
             if (!match) {
                 return res.status(400).json({error: "Password is incorrect!"})
