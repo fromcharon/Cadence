@@ -9,7 +9,7 @@ function Profile() {
 
   async function getProfileInfo() {
     try {
-      const response = await fetch(`http://localhost:3000/profileinfo`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/profileinfo`, {
                 credentials: 'include',
             });
 

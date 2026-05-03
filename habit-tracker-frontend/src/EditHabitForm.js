@@ -6,7 +6,7 @@ function EditHabitForm(props){
 
     async function handleEdit() {
         try {
-            const response = await fetch(`http://localhost:3000/habits/${props.habit.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/habits/${props.habit.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

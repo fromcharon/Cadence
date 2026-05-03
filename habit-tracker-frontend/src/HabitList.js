@@ -6,7 +6,7 @@ function HabitList(props) {
     const [habits, setHabits] = useState([]);
     async function loadHabits(){
     try{
-        const response = await fetch('http://localhost:3000/habits', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/habits`, {
             credentials: 'include'
         });
         const habitData = await response.json();
@@ -22,7 +22,7 @@ function HabitList(props) {
 
     async function handleLogout() {
         try{
-            const response = await fetch('http://localhost:3000/logout', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
