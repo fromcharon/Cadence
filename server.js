@@ -270,7 +270,12 @@ app.post("/login", async (req, res) => {
 
             if (match) {
                 req.session.userId = userData.id;
-                return res.status(200).json({message: "Logged In Successfully!"})
+                req.session.save((err) => {
+                    if (err) {
+                        return res.status(500).json({ error: 'Session save failed' });
+                    }
+                    res.json({ message: 'Login successful' });
+                    });
             }
             if (!match) {
                 return res.status(400).json({error: "Password is incorrect!"})
