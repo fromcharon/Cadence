@@ -20,8 +20,17 @@ pool.query("SELECT NOW()", (err, res) => {
     }
 });
 
+const allowedOrigins = [
+    'https://cadence-brown.vercel.app',
+    'http://localhost:3001',
+    'http://localhost:3000'
+]
+
 function allowControl(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'http://localhost:3001');
+     const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
