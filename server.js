@@ -54,11 +54,11 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    secure: true,
-    sameSite: 'none',
-    maxAge: 30 * 24 * 60 * 60 * 1000
-  }
+  cookie: { 
+  secure: process.env.NODE_ENV === 'production',  // true on Render, false on localhost
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  maxAge: 30*24*60*60*1000 
+}
 }))
 
 
