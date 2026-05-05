@@ -63,6 +63,32 @@ app.use(session({
 
 
 
+app.get('/habits/today', async (req, res) => {
+  if (!req.session.userId) return res.status(401).json({ error: 'Not logged in' });
+
+  try {
+    const result = await pool.query(`
+      SELECT 
+        h.id,
+        h.name,
+        h.streak,
+        CASE 
+          WHEN c.id IS NOT NULL THEN true 
+          ELSE false 
+        END as completed_today
+      FROM habits h
+      LEFT JOIN completions c 
+        ON c.habit_id = h.id 
+        AND c.completed_date = CURRENT_DATE
+      WHERE h.user_id = $1
+    `, [req.session.userId]);
+
+    res.json(result.rows);
+  } catch(err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 app.get("/habits", async (req, res) => {
     if (!req.session.userId) {
@@ -334,16 +360,14 @@ app.post("/logout", async (req,res) => {
     const userId = req.session.userId;
     
     try{
-
         if (!req.session.userId) return res.status(401).json({error: "Not Logged in, Log-out will not work"});
-
-        if (userId) {
+        
             req.session.destroy((err) => {
                 if (err) return res.status(500).json({error: 'Server Error!'});
-            })
 
-            return res.status(200).json({message: 'Log-out Successful'});
-        }
+                res.clearCookie('connect.sid');
+                return res.status(200).json({message: 'Log-out Successful'});
+            })
     }
     catch(err) {
         res.status(500).json({error: 'Server Error!'});
@@ -370,6 +394,8 @@ app.get("/profileinfo", async(req, res) => {
         res.status(500).json({error: "Database Issue"});
     } 
 })
+
+
 
 
 

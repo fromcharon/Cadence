@@ -10,7 +10,7 @@
   background: white;
   border-radius: 20px;
   padding: 12px;
-  margin: 40px auto;
+  margin: 120px auto;
   max-width: 820px;
   width: calc(100% - 40px);
 }
@@ -76,7 +76,6 @@
 
 .card-cadence {
   background: transparent;
-  border: 1px solid rgba(232, 212, 176, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,7 +84,39 @@
 .cadence-title {
   color: black;
   font-size: 72px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   opacity: 0.8;
   letter-spacing: 16px;
+}
+
+.today-habit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #1a0f08;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.today-habit-name {
+  color: var(--cream);
+  font-size: 14px;
+}
+
+.today-badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.badge-done {
+  background: var(--sage);
+  color: #1a0f08;
+  font-weight: 600;
+}
+
+.badge-pending {
+  border: 1px solid #4a2e18;
+  color: #a07050;
 }

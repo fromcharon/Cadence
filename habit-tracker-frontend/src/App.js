@@ -34,13 +34,30 @@ function App() {
 
   function handleLoginSuccess() {
     setLoginState(true);
+  }
+
+  async function handleLogout() {
+    try {
+      await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
+      method: 'POST',
+      credentials: 'include'
+    });
+  }
+
+    catch(err) {
+      console.error(err);
+  }
+
+    finally {
+      setLoginState(false); // reset state regardless of server response
+  }
 }
   return (
   <div className='app-bg'>
     {isLoggedIn 
       ? <div className="app-container">
           <NavBar className="navbar" onCurrentView={setCurrentView} activeView={currentView}/>
-          <button onClick={() => setLoginState(false)} className='logout-btn'><LogOut size={20} /></button>
+          <button onClick={handleLogout} className='logout-btn'><LogOut size={20} /></button>
           {currentView === 'home' && <Dashboard />}
           {currentView === 'habits' && <HabitList/>}
           {currentView === 'profile' && <Profile />}

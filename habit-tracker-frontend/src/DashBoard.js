@@ -1,5 +1,6 @@
 import React from 'react';
 import './DashBoard.css';
+import { useState, useEffect } from 'react';
 
 const QUOTES = [
   "Small daily improvements are the key to staggering long-term results.",
@@ -16,7 +17,25 @@ const TIPS = [
 function Dashboard() {
   const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
   const tip = TIPS[Math.floor(Math.random() * TIPS.length)];
+  const [habits, setHabits] = useState([]);
 
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/habits/today`, {
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(data => setHabits(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  // master streak = highest streak number across all habits
+  const masterStreak = habits.length > 0 
+    ? Math.max(...habits.map(h => h.streak)) 
+    : 0;
+
+  const pendingHabits = habits.filter(h => !h.completed_today);
+  const doneHabits = habits.filter(h => h.completed_today);
+  
   return (
     <div className='main-view'>
       <div className='dashboard-wrapper'>
@@ -29,8 +48,12 @@ function Dashboard() {
 
           <div className="card card-streak">
             <span className="card-label">master streak</span>
-            <div className="streak-number">—</div>
-            <div className="streak-sub">connect data next session</div>
+            <div className="streak-number">{masterStreak}</div>
+            <div className="streak-sub">
+              {habits.length > 0 
+                ? `${doneHabits.length} of ${habits.length} done today`
+                : 'no habits yet'}
+            </div>
           </div>
 
           <div className='card card-cadence'>
@@ -44,7 +67,17 @@ function Dashboard() {
 
           <div className="card card-today span2">
             <span className="card-label">today's habits</span>
-            <p className="today-placeholder">backend endpoint coming next session</p>
+            {habits.length === 0 
+              ? <p className="today-placeholder">no habits added yet</p>
+              : [...doneHabits, ...pendingHabits].map(habit => (
+                  <div key={habit.id} className="today-habit-row">
+                    <span className="today-habit-name">{habit.name}</span>
+                    <span className={`today-badge ${habit.completed_today ? 'badge-done' : 'badge-pending'}`}>
+                      {habit.completed_today ? 'done' : 'pending'}
+                    </span>
+                  </div>
+                ))
+            }
           </div>
 
         </div>
